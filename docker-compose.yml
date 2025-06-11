@@ -14,7 +14,7 @@ services:
             - APP_ENV=production
             - APP_DEBUG=false
             - APP_KEY=base64:kecPBbmgQ2OiUXk1kbKgCkFcBCR0kwtaNAEwVhtvD+8=
-            - APP_URL=http://localhost:8000
+            - APP_URL=http://localhost:8001
             - DB_CONNECTION=mysql
             - DB_HOST=mysql
             - DB_PORT=3306
@@ -53,7 +53,7 @@ services:
             - ./custom_nginx.conf:/etc/nginx/nginx.conf
             - ./nginx_services.conf:/etc/nginx/conf.d/default.conf
         ports:
-            - "8000:80"
+            - "8001:80"
         depends_on:
             - astronacci-api
         networks:
