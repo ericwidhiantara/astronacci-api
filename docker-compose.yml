@@ -10,11 +10,11 @@ services:
             - .:/var/www/html
             - ./storage:/var/www/html/storage
         environment:
-            - APP_NAME=Laravel
+            - APP_NAME=Astronacci
             - APP_ENV=production
             - APP_DEBUG=false
             - APP_KEY=base64:kecPBbmgQ2OiUXk1kbKgCkFcBCR0kwtaNAEwVhtvD+8=
-            - APP_URL=http://localhost:8001
+            - APP_URL=https://astronacci.richh.my.id
             - DB_CONNECTION=mysql
             - DB_HOST=mysql
             - DB_PORT=3306
@@ -30,32 +30,14 @@ services:
             - MAIL_USERNAME=your_mailtrap_username
             - MAIL_PASSWORD=your_mailtrap_password
             - MAIL_ENCRYPTION=tls
-            - MAIL_FROM_ADDRESS=noreply@example.com
-            - MAIL_FROM_NAME=Laravel
-            - ONESIGNAL_REST_API_URL=https://api.onesignal.com
-            - ONESIGNAL_APP_ID=ed858127-58a2-44c2-9936-f89290ee83a6
-            - ONESIGNAL_REST_API_KEY=os_v2_app_5wcycj2yujcmfgjw7cjjb3uduzxcvnymwmqeqdnhq636722hds2akqdhtkd6s5smltrmvib6abma2cd46eslolunkaqtxrqcgnylc6q
+            - MAIL_FROM_ADDRESS=noreply@astronacci.com
+            - MAIL_FROM_NAME=Astronacci
             - TZ=Asia/Jakarta
         restart: always
-        expose:
-            - 9000
+        ports:
+            - "9000:9000"
         depends_on:
             - mysql
-        networks:
-            - laravel
-
-    webserver:
-        image: nginx:alpine
-        container_name: webserver-astronacci
-        restart: always
-        volumes:
-            - .:/var/www/html
-            - ./custom_nginx.conf:/etc/nginx/nginx.conf
-            - ./nginx_services.conf:/etc/nginx/conf.d/default.conf
-        ports:
-            - "8001:80"
-        depends_on:
-            - astronacci-api
         networks:
             - laravel
 
@@ -68,8 +50,6 @@ services:
             - MYSQL_USER=root
             - MYSQL_PASSWORD=root
             - MYSQL_ROOT_PASSWORD=root
-        ports:
-            - "3306:3306"
         volumes:
             - mysql-data:/var/lib/mysql
         networks:
