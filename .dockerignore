@@ -1,0 +1,5 @@
+node_modules
+# Jangan abaikan .env
+!.env
+.DS_Store
+.git
