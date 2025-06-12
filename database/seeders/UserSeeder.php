@@ -18,7 +18,6 @@ class UserSeeder extends Seeder
                 'name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
                 'password' => Hash::make('password123'),
-                'avatar' => 'avatars/user' . $i . '.jpg',
                 'bio' => $faker->sentence(10),
                 'date_of_birth' => $faker->dateTimeBetween('-50 years', '-18 years')->format('Y-m-d'),
                 'gender' => $faker->randomElement(['male', 'female', 'other']),

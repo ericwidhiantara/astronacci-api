@@ -67,7 +67,8 @@ class UserController extends Controller
     {
         $users = User::query()
             ->when($request->search, fn($query) => $query->where('name', 'like', '%' . $request->search . '%'))
-            ->paginate(10);
+            ->orderBy('id', 'desc')
+            ->paginate($request->limit ?? 10);
 
         return ResponseFormatter::success(
             $users,
