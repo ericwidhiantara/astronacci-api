@@ -3,14 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ResponseFormatter;
+use App\Mail\ForgotPasswordMail;
 use App\Models\User;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -90,25 +95,83 @@ class AuthController extends Controller
         ], 'Authentication Failed, Wrong email or password', 401);
     }
 
-    public function forgotPassword(Request $request)
+    public function submitForgetPasswordForm(Request $request)
     {
-        $request->validate(['email' => 'required|email']);
-
-        $status = Password::sendResetLink($request->only('email'));
-
-        if ($status === Password::RESET_LINK_SENT) {
-            return ResponseFormatter::success([
-                'success' => true,
-                'message' => 'Reset password link sent',
-                'status' => __($status)
-            ], 'Reset password link sent');
+        //validasi
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'email' => 'required|email|exists:users',
+            ],
+            [
+                'email.required' => 'Masukkan email',
+                'email.email' => 'Format email salah',
+                'email.exists' => 'Email tidak terdaftar di sistem kami',
+            ]
+        );
+        //jika validasi gagal maka return error ke user
+        if ($validator->fails()) {
+            return ResponseFormatter::error([
+                'success' => false,
+                'message' => Arr::first(Arr::flatten($validator->errors()->get('*'))), //to get the first message validation
+                'error' => $validator->errors(),
+            ], 'Validasi gagal', 400);
         }
 
-        return ResponseFormatter::error([
-            'success' => false,
-            'message' => 'Reset password link could not be sent',
-            'status' => __($status)
-        ], 'Reset password link could not be sent');
+        $token = Str::random(64);
+
+        DB::table('password_resets')->insert([
+            'email' => $request->email,
+            'token' => $token,
+            'created_at' => Carbon::now()
+        ]);
+
+        Mail::to($request->email)->send(new ForgotPasswordMail($token, $request->email));
+
+        return ResponseFormatter::success(null, 'Email terkirim, silakan periksa email anda');
+    }
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function showResetPasswordForm($token, $email)
+    {
+        return view('auth.passwords.reset', ['token' => $token, 'email' => $email]);
+    }
+
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function submitResetPasswordForm(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|exists:users',
+            'password' => 'required|string|min:8|confirmed',
+            'password_confirmation' => 'required'
+        ]);
+
+        $updatePassword = DB::table('password_resets')
+            ->where([
+                'email' => $request->email,
+                'token' => $request->token
+            ])
+            ->first();
+        if (!$updatePassword) {
+            return back()->withInput()->with('error', 'Invalid token!');
+        }
+
+        $user = User::where('email', $request->email)
+            ->update(['password' => Hash::make($request->password)]);
+
+        DB::table('password_resets')->where(['email' => $request->email])->delete();
+        if ($user) {
+
+            return redirect()->back()->with(['success' => 'Kata Sandi Berhasil Diganti']);
+        }
+        return redirect()->back()->with(['error' => 'Kata Sandi Gagal Diganti']);
     }
 
     public function logout(Request $request)

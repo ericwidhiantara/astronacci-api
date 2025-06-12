@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
+Route::post('forgot-password', [AuthController::class, 'submitForgetPasswordForm'])->name('forgot.password.mail');
 Route::get('/check-app-version', [HomeController::class, 'checkAppVersion']);
 
 Route::middleware('auth:sanctum')->group(function () {
