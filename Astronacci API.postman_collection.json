@@ -1,0 +1,1227 @@
+{
+	"info": {
+		"_postman_id": "cfa061ff-3486-40d4-9a9e-d9047c361a73",
+		"name": "Laravel API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4089191"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john.doe1@example.com\",\n  \"password\": \"password123\",\n  \"password_confirmation\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"password\": \"password123\",\n  \"password_confirmation\": \"password123\"\n}"
+								},
+								"url": {
+									"raw": "{{url}}/register",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "0.0.0.0:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 11 Jun 2025 11:05:37 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"code\": 400,\n        \"status\": \"error\",\n        \"message\": \"Register failed\"\n    },\n    \"data\": {\n        \"success\": false,\n        \"message\": \"Validation failed, please check your input\",\n        \"error\": {\n            \"email\": [\n                \"Email sudah digunakan\"\n            ]\n        }\n    }\n}"
+						},
+						{
+							"name": "Register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john.doe1@example.com\",\n  \"password\": \"password123\",\n  \"password_confirmation\": \"password123\"\n}"
+								},
+								"url": {
+									"raw": "{{url}}/register",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "0.0.0.0:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 11 Jun 2025 11:45:24 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"code\": 200,\n        \"status\": \"success\",\n        \"message\": \"Register successful\"\n    },\n    \"data\": {\n        \"success\": true,\n        \"message\": \"Register successful\",\n        \"token\": \"12|pwz44SXnzL5IU6b8NxIKkQ9qFLDzzjxpzuiyTIbYa134d4bf\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = pm.response.json();",
+									"pm.environment.set('token', res.data.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"john.doe1@example.com\",\n  \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"john.doe@example.com\",\n  \"password\": \"password123\"\n}"
+								},
+								"url": {
+									"raw": "{{url}}/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 11 Jun 2025 09:41:23 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Server",
+									"value": "DomaiNesia"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=63072000; includeSubDomains; preload"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3-27=\":443\"; ma=86400, h3-28=\":443\"; ma=86400, h3-29=\":443\"; ma=86400, h3=\":443\"; ma=86400"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"code\": 200,\n        \"status\": \"success\",\n        \"message\": \"Login successful\"\n    },\n    \"data\": {\n        \"success\": true,\n        \"message\": \"Login successful\",\n        \"token\": \"6|6P1DwE5wjAGBdmO55iBtOnurK7WpEhnlnBX7Ob6w01f0ac6e\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"nukenin.konoha@gmail.com\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/forgot-password",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"forgot-password"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Forgot Password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"nukenin.konoha@gmail.com\"\n}"
+								},
+								"url": {
+									"raw": "{{url}}/forgot-password",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"forgot-password"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "0.0.0.0:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Jun 2025 09:54:23 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"code\": 200,\n        \"status\": \"success\",\n        \"message\": \"Email terkirim\"\n    },\n    \"data\": {\n        \"success\": true,\n        \"message\": \"Email terkirim, silakan periksa email anda\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/logout",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "0.0.0.0:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 11 Jun 2025 09:55:15 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"code\": 200,\n        \"status\": \"success\",\n        \"message\": \"Logout successful\"\n    },\n    \"data\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Detail User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Detail User",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/users/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "0.0.0.0:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 11 Jun 2025 09:55:12 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"code\": 200,\n        \"status\": \"success\",\n        \"message\": \"User retrieved successfully\"\n    },\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Cesar Pacocha\",\n        \"email\": \"elliot.keebler@example.org\",\n        \"email_verified_at\": null,\n        \"created_at\": \"2025-06-11T06:13:15.000000Z\",\n        \"updated_at\": \"2025-06-11T06:13:15.000000Z\",\n        \"avatar\": \"avatars/user1.jpg\",\n        \"bio\": \"Fuga voluptas qui ullam iste quia est est est quod totam et voluptas.\",\n        \"date_of_birth\": \"1996-06-28T00:00:00.000000Z\",\n        \"gender\": \"female\",\n        \"location\": \"East Everett, Philippines\",\n        \"avatar_url\": \"http://0.0.0.0:8000/storage/avatars/user1.jpg\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Edit Profile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "John Updated",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "john.updated@example.com",
+									"type": "text"
+								},
+								{
+									"key": "bio",
+									"value": "Updated bio for John.",
+									"type": "text"
+								},
+								{
+									"key": "date_of_birth",
+									"value": "1990-01-01",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "male",
+									"type": "text"
+								},
+								{
+									"key": "location",
+									"value": "New York, USA",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/profile/update",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"profile",
+								"update"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Edit Profile",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "John Updated",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "john.updated@example.com",
+											"type": "text"
+										},
+										{
+											"key": "bio",
+											"value": "Updated bio for John.",
+											"type": "text"
+										},
+										{
+											"key": "date_of_birth",
+											"value": "1990-01-01",
+											"type": "text"
+										},
+										{
+											"key": "gender",
+											"value": "male",
+											"type": "text"
+										},
+										{
+											"key": "location",
+											"value": "New York, USA",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/user",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 11 Jun 2025 09:42:57 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Vary",
+									"value": "Authorization,Accept-Encoding"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Server",
+									"value": "DomaiNesia"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=63072000; includeSubDomains; preload"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3-27=\":443\"; ma=86400, h3-28=\":443\"; ma=86400, h3-29=\":443\"; ma=86400, h3=\":443\"; ma=86400"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"code\": 200,\n        \"status\": \"success\",\n        \"message\": \"Profile updated successfully\"\n    },\n    \"data\": {\n        \"id\": 101,\n        \"name\": \"John Doe\",\n        \"email\": \"John.doe@example.com\",\n        \"email_verified_at\": null,\n        \"created_at\": \"2025-06-11T16:48:18.000000Z\",\n        \"updated_at\": \"2025-06-11T16:48:18.000000Z\",\n        \"avatar\": null,\n        \"bio\": null,\n        \"date_of_birth\": null,\n        \"gender\": null,\n        \"location\": null,\n        \"avatar_url\": \"https://ui-avatars.com/api/?name=John Doe\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "old_password",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/profile/change-password",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"profile",
+								"change-password"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Change Password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "old_password",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "password",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/profile/change-password",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"profile",
+										"change-password"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "0.0.0.0:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Jun 2025 04:34:02 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"code\": 200,\n        \"status\": \"success\",\n        \"message\": \"Password has changed, please login again\"\n    },\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Change Profile Picture",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "postman-cloud:///1efabc49-6d95-4560-a347-93e9f053aa5f"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/profile/change-profile-picture",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"profile",
+								"change-profile-picture"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Change Profile Picture",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "avatar",
+											"type": "file",
+											"src": "postman-cloud:///1efabc49-6d95-4560-a347-93e9f053aa5f"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/profile/change-profile-picture",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"profile",
+										"change-profile-picture"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "0.0.0.0:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Jun 2025 04:32:25 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"code\": 200,\n        \"status\": \"success\",\n        \"message\": \"Profile picture has changed\"\n    },\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "List Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/users?search=&limit=10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": ""
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List Users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/users?search=john",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "john"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "0.0.0.0:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 11 Jun 2025 09:56:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"code\": 200,\n        \"status\": \"success\",\n        \"message\": \"Users retrieved successfully\"\n    },\n    \"data\": {\n        \"current_page\": 1,\n        \"data\": [\n            {\n                \"id\": 1,\n                \"name\": \"Cesar Pacocha\",\n                \"email\": \"elliot.keebler@example.org\",\n                \"email_verified_at\": null,\n                \"created_at\": \"2025-06-11T06:13:15.000000Z\",\n                \"updated_at\": \"2025-06-11T06:13:15.000000Z\",\n                \"avatar\": \"avatars/user1.jpg\",\n                \"bio\": \"Fuga voluptas qui ullam iste quia est est est quod totam et voluptas.\",\n                \"date_of_birth\": \"1996-06-28T00:00:00.000000Z\",\n                \"gender\": \"female\",\n                \"location\": \"East Everett, Philippines\",\n                \"avatar_url\": \"http://0.0.0.0:8000/storage/avatars/user1.jpg\"\n            },\n            {\n                \"id\": 2,\n                \"name\": \"Prof. Nedra Cummings DDS\",\n                \"email\": \"kelton16@example.net\",\n                \"email_verified_at\": null,\n                \"created_at\": \"2025-06-11T06:13:15.000000Z\",\n                \"updated_at\": \"2025-06-11T06:13:15.000000Z\",\n                \"avatar\": \"avatars/user2.jpg\",\n                \"bio\": \"Delectus assumenda aut eos a cumque iusto et sed vitae dolor laboriosam et eos.\",\n                \"date_of_birth\": \"1979-08-12T00:00:00.000000Z\",\n                \"gender\": \"other\",\n                \"location\": \"New Tressiechester, Comoros\",\n                \"avatar_url\": \"http://0.0.0.0:8000/storage/avatars/user2.jpg\"\n            },\n            {\n                \"id\": 3,\n                \"name\": \"Rodrick Blick\",\n                \"email\": \"nestor.marvin@example.org\",\n                \"email_verified_at\": null,\n                \"created_at\": \"2025-06-11T06:13:15.000000Z\",\n                \"updated_at\": \"2025-06-11T06:13:15.000000Z\",\n                \"avatar\": \"avatars/user3.jpg\",\n                \"bio\": \"Quo enim voluptatum amet accusantium sit magnam enim dolorem optio hic voluptatem.\",\n                \"date_of_birth\": \"1995-10-04T00:00:00.000000Z\",\n                \"gender\": \"female\",\n                \"location\": \"East Elitown, Andorra\",\n                \"avatar_url\": \"http://0.0.0.0:8000/storage/avatars/user3.jpg\"\n            },\n            {\n                \"id\": 4,\n                \"name\": \"Mr. Sheridan Pollich I\",\n                \"email\": \"briana.cassin@example.org\",\n                \"email_verified_at\": null,\n                \"created_at\": \"2025-06-11T06:13:16.000000Z\",\n                \"updated_at\": \"2025-06-11T06:13:16.000000Z\",\n                \"avatar\": \"avatars/user4.jpg\",\n                \"bio\": \"Omnis molestiae laboriosam voluptas architecto aliquam hic.\",\n                \"date_of_birth\": \"2004-06-21T00:00:00.000000Z\",\n                \"gender\": \"male\",\n                \"location\": \"New Jenniferview, United States Minor Outlying Islands\",\n                \"avatar_url\": \"http://0.0.0.0:8000/storage/avatars/user4.jpg\"\n            },\n            {\n                \"id\": 5,\n                \"name\": \"Mr. Edmund Schowalter II\",\n                \"email\": \"emmitt18@example.net\",\n                \"email_verified_at\": null,\n                \"created_at\": \"2025-06-11T06:13:16.000000Z\",\n                \"updated_at\": \"2025-06-11T06:13:16.000000Z\",\n                \"avatar\": \"avatars/user5.jpg\",\n                \"bio\": \"Iste id soluta in placeat ipsam excepturi voluptatibus rem omnis.\",\n                \"date_of_birth\": \"1984-06-25T00:00:00.000000Z\",\n                \"gender\": \"female\",\n                \"location\": \"East Sigurdhaven, Armenia\",\n                \"avatar_url\": \"http://0.0.0.0:8000/storage/avatars/user5.jpg\"\n            },\n            {\n                \"id\": 6,\n                \"name\": \"Barton Collier\",\n                \"email\": \"zjones@example.org\",\n                \"email_verified_at\": null,\n                \"created_at\": \"2025-06-11T06:13:16.000000Z\",\n                \"updated_at\": \"2025-06-11T06:13:16.000000Z\",\n                \"avatar\": \"avatars/user6.jpg\",\n                \"bio\": \"Id voluptatem amet qui a vel vel.\",\n                \"date_of_birth\": \"1986-02-19T00:00:00.000000Z\",\n                \"gender\": \"male\",\n                \"location\": \"South Haley, Guinea\",\n                \"avatar_url\": \"http://0.0.0.0:8000/storage/avatars/user6.jpg\"\n            },\n            {\n                \"id\": 7,\n                \"name\": \"Amari Pouros\",\n                \"email\": \"xcummerata@example.org\",\n                \"email_verified_at\": null,\n                \"created_at\": \"2025-06-11T06:13:17.000000Z\",\n                \"updated_at\": \"2025-06-11T06:13:17.000000Z\",\n                \"avatar\": \"avatars/user7.jpg\",\n                \"bio\": \"Perspiciatis molestiae ut asperiores ut et reprehenderit et voluptatem omnis ut animi.\",\n                \"date_of_birth\": \"1977-10-08T00:00:00.000000Z\",\n                \"gender\": \"other\",\n                \"location\": \"Verdieshire, Iran\",\n                \"avatar_url\": \"http://0.0.0.0:8000/storage/avatars/user7.jpg\"\n            },\n            {\n                \"id\": 8,\n                \"name\": \"Dr. Wendy Rogahn\",\n                \"email\": \"bell14@example.net\",\n                \"email_verified_at\": null,\n                \"created_at\": \"2025-06-11T06:13:17.000000Z\",\n                \"updated_at\": \"2025-06-11T06:13:17.000000Z\",\n                \"avatar\": \"avatars/user8.jpg\",\n                \"bio\": \"Quod qui maxime culpa et aut ex.\",\n                \"date_of_birth\": \"2000-03-15T00:00:00.000000Z\",\n                \"gender\": \"male\",\n                \"location\": \"Lake Grant, Pakistan\",\n                \"avatar_url\": \"http://0.0.0.0:8000/storage/avatars/user8.jpg\"\n            },\n            {\n                \"id\": 9,\n                \"name\": \"Nikko Kshlerin\",\n                \"email\": \"erling26@example.com\",\n                \"email_verified_at\": null,\n                \"created_at\": \"2025-06-11T06:13:17.000000Z\",\n                \"updated_at\": \"2025-06-11T06:13:17.000000Z\",\n                \"avatar\": \"avatars/user9.jpg\",\n                \"bio\": \"Laborum alias assumenda maxime est accusantium suscipit omnis laboriosam quam dignissimos ex quibusdam.\",\n                \"date_of_birth\": \"1975-12-26T00:00:00.000000Z\",\n                \"gender\": \"female\",\n                \"location\": \"East Haileyfurt, Western Sahara\",\n                \"avatar_url\": \"http://0.0.0.0:8000/storage/avatars/user9.jpg\"\n            },\n            {\n                \"id\": 10,\n                \"name\": \"Mrs. Assunta Torp MD\",\n                \"email\": \"gottlieb.syble@example.org\",\n                \"email_verified_at\": null,\n                \"created_at\": \"2025-06-11T06:13:17.000000Z\",\n                \"updated_at\": \"2025-06-11T06:13:17.000000Z\",\n                \"avatar\": \"avatars/user10.jpg\",\n                \"bio\": \"Sapiente rerum et et ullam debitis velit est quisquam odit at quaerat sit.\",\n                \"date_of_birth\": \"2003-08-20T00:00:00.000000Z\",\n                \"gender\": \"male\",\n                \"location\": \"West Sydnie, Bhutan\",\n                \"avatar_url\": \"http://0.0.0.0:8000/storage/avatars/user10.jpg\"\n            }\n        ],\n        \"first_page_url\": \"http://0.0.0.0:8000/api/users?page=1\",\n        \"from\": 1,\n        \"last_page\": 11,\n        \"last_page_url\": \"http://0.0.0.0:8000/api/users?page=11\",\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://0.0.0.0:8000/api/users?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": \"http://0.0.0.0:8000/api/users?page=2\",\n                \"label\": \"2\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://0.0.0.0:8000/api/users?page=3\",\n                \"label\": \"3\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://0.0.0.0:8000/api/users?page=4\",\n                \"label\": \"4\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://0.0.0.0:8000/api/users?page=5\",\n                \"label\": \"5\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://0.0.0.0:8000/api/users?page=6\",\n                \"label\": \"6\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://0.0.0.0:8000/api/users?page=7\",\n                \"label\": \"7\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://0.0.0.0:8000/api/users?page=8\",\n                \"label\": \"8\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://0.0.0.0:8000/api/users?page=9\",\n                \"label\": \"9\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://0.0.0.0:8000/api/users?page=10\",\n                \"label\": \"10\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://0.0.0.0:8000/api/users?page=11\",\n                \"label\": \"11\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://0.0.0.0:8000/api/users?page=2\",\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"next_page_url\": \"http://0.0.0.0:8000/api/users?page=2\",\n        \"path\": \"http://0.0.0.0:8000/api/users\",\n        \"per_page\": 10,\n        \"prev_page_url\": null,\n        \"to\": 10,\n        \"total\": 102\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Profile",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "!_Namaste99",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/profile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Profile",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "username",
+											"value": "admin",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "!_Namaste99",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/profile",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "0.0.0.0:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 11 Jun 2025 10:53:14 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"code\": 200,\n        \"status\": \"success\",\n        \"message\": \"User profile retrieved successfully\"\n    },\n    \"data\": {\n        \"success\": true,\n        \"message\": \"User profile retrieved successfully\",\n        \"data\": {\n            \"id\": 102,\n            \"name\": \"John Doe\",\n            \"email\": \"john.doe@example.com\",\n            \"email_verified_at\": null,\n            \"created_at\": \"2025-06-11T09:54:37.000000Z\",\n            \"updated_at\": \"2025-06-11T09:54:37.000000Z\",\n            \"avatar\": null,\n            \"bio\": null,\n            \"date_of_birth\": null,\n            \"gender\": null,\n            \"location\": null,\n            \"avatar_url\": null\n        }\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Home",
+			"item": [
+				{
+					"name": "Check App Version",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Admin Namaste Bali Trans",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "namastebalitrans99@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "!_Namaste99",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "085737159915",
+									"type": "text"
+								},
+								{
+									"key": "picture",
+									"type": "file",
+									"src": "postman-cloud:///1eee871b-5b2d-4a90-9046-a9ba2fb9e477"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/check-app-version",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"check-app-version"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": ""
+		}
+	]
+}
