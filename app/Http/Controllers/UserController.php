@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+
 
 class UserController extends Controller
 {
@@ -17,7 +19,6 @@ class UserController extends Controller
 
         // Define validation rules
         $rules = [
-            'avatar' => 'sometimes|image|max:2048',
             'name' => 'sometimes|string|max:255',
             'email' => 'sometimes|string|email|max:255|unique:users,email,' . $user->id,
             'bio' => 'sometimes|string|max:1000',
@@ -39,13 +40,6 @@ class UserController extends Controller
 
         DB::beginTransaction();
         try {
-            if ($request->hasFile('avatar')) {
-                if ($user->avatar) {
-                    Storage::disk('public')->delete($user->avatar);
-                }
-                $path = $request->file('avatar')->store('avatars', 'public');
-                $user->avatar = $path;
-            }
 
             $validated = $validator->validated();
 
@@ -90,5 +84,65 @@ class UserController extends Controller
             $user,
             'User retrieved successfully'
         );
+    }
+
+    public function changePassword(Request $request)
+    {
+        $user = $request->user();
+        $validator = Validator::make($request->all(), [
+            'password' => 'required|string|min:8|confirmed',
+            'old_password' => 'required|string',
+            'password_confirmation' => 'required|string',
+        ], [
+            'password.required' => 'Password is required',
+            'password.min' => 'Password must be at least 8 characters',
+            'password.confirmed' => 'Password confirmation does not match',
+            'old_password.required' => 'Old password is required',
+            'password_confirmation.required' => 'Password confirmation is required',
+
+        ]);
+        if ($validator->fails()) {
+            return ResponseFormatter::error([
+                'success' => false,
+                'message' => $validator->errors()->first(),
+            ], 'Validation failed', 400);
+        }
+        if (!\Hash::check($request->old_password, $user->password)) {
+            return ResponseFormatter::error([
+                'success' => false,
+                'message' => 'Old password is incorrect',
+            ], 'Old password is incorrect', 400);
+        }
+        $user->update([
+            'password' => Hash::make($request->password),
+        ]);
+        return ResponseFormatter::success(null,'Password has changed, please login again');
+    }
+
+    public function changeProfilePicture(Request $request)
+    {
+        $user = $request->user();
+        $validator = Validator::make($request->all(), [
+            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ], [
+            'avatar.required' => 'Avatar is required',
+            'avatar.image' => 'Avatar must be an image',
+            'avatar.mimes' => 'Avatar must be a JPEG, PNG, JPG, or GIF',
+            'avatar.max' => 'Avatar size must not exceed 2MB',
+        ]);
+        if ($validator->fails()) {
+            return ResponseFormatter::error([
+                'success' => false,
+                'message' => $validator->errors()->first(),
+            ], 'Validation failed', 400);
+        }
+        if ($user->avatar) {
+            Storage::disk('public')->delete($user->avatar);
+        }
+        $path = $request->file('avatar')->store('avatars', 'public');
+        $user->update([
+            'avatar' => $path,
+        ]);
+        return ResponseFormatter::success(null,'Profile picture has changed');
     }
 }

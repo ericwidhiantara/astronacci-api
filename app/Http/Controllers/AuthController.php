@@ -115,10 +115,7 @@ class AuthController extends Controller
     {
         $request->user()->currentAccessToken()->delete();
 
-        return ResponseFormatter::success([
-            'success' => true,
-            'message' => 'Logout successful',
-        ], 'Logout successful');
+        return ResponseFormatter::success(null,'Logout successful');
 
     }
 

@@ -12,8 +12,10 @@ Route::get('/check-app-version', [HomeController::class, 'checkAppVersion']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
-    Route::put('/user', [UserController::class, 'updateProfile']);
     Route::get('/users', [UserController::class, 'index']);
     Route::get('/users/{id}', [UserController::class, 'show']);
     Route::get('/profile', [AuthController::class, 'userProfile']);
+    Route::post('/profile/update', [UserController::class, 'updateProfile']);
+    Route::post('/profile/change-password', [UserController::class, 'changePassword']);
+    Route::post('/profile/change-profile-picture', [UserController::class, 'changeProfilePicture']);
 });
