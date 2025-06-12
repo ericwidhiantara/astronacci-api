@@ -133,10 +133,6 @@ class AuthController extends Controller
             ], 'User not found', 404);
         }
 
-        return ResponseFormatter::success([
-            'success' => true,
-            'message' => 'User profile retrieved successfully',
-            'data' => $user
-        ], 'User profile retrieved successfully');
+        return ResponseFormatter::success($user, 'User profile retrieved successfully');
     }
 }
